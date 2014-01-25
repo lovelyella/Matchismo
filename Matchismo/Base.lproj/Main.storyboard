@@ -160,7 +160,7 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QpT-FP-sIv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flips: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjO-bS-JNB">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSf-sQ-byZ">
                                 <rect key="frame" x="20" y="439" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -171,14 +171,24 @@
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="flipsLabel" destination="rjO-bS-JNB" id="ZrI-B1-A6Y"/>
-                        <outletCollection property="cardButtons" destination="kh9-bI-dsS" id="O4u-py-6ZE"/>
-                        <outletCollection property="cardButtons" destination="EF2-KM-vCk" id="hib-7e-7oj"/>
-                        <outletCollection property="cardButtons" destination="EF2-KM-vCk" id="MJI-lg-HaI"/>
+                        <outlet property="scoreLabel" destination="wSf-sQ-byZ" id="Bql-W7-5M2"/>
+                        <outletCollection property="cardButtons" destination="EF2-KM-vCk" id="acb-DU-bM4"/>
+                        <outletCollection property="cardButtons" destination="o9E-po-vsJ" id="QAH-lW-wlE"/>
+                        <outletCollection property="cardButtons" destination="4iE-Fc-NQQ" id="mxL-3f-AKW"/>
+                        <outletCollection property="cardButtons" destination="YQA-1o-vdj" id="dHz-ag-ytP"/>
+                        <outletCollection property="cardButtons" destination="yuf-w3-rDf" id="1e5-ch-Fmq"/>
+                        <outletCollection property="cardButtons" destination="q8h-7K-3Ap" id="wHt-aL-7gY"/>
+                        <outletCollection property="cardButtons" destination="e4O-im-kXN" id="qNV-Kw-goH"/>
+                        <outletCollection property="cardButtons" destination="Mde-5s-Jkg" id="Kes-Bs-BtK"/>
+                        <outletCollection property="cardButtons" destination="Xmm-MD-gXv" id="gOI-tY-198"/>
+                        <outletCollection property="cardButtons" destination="UUA-WX-7ZZ" id="s6U-zN-NRJ"/>
+                        <outletCollection property="cardButtons" destination="Gfs-EU-f4G" id="hmD-hi-zrm"/>
+                        <outletCollection property="cardButtons" destination="vGe-Dt-ee2" id="gVl-0G-Gw8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-53" y="-40"/>
         </scene>
     </scenes>
     <resources>
