@@ -16,10 +16,24 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
 
 @end
 
 @implementation CardGameViewController
+
+- (IBAction)touchGameModeSegment:(UISegmentedControl *)sender {
+}
+
+- (IBAction)touchNewGameButton:(UIButton *)sender
+{
+    self.game = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
+                                                 usingDeck:[self createDeck]];
+    
+    [self updateUI];
+}
+
+
 
 
 -(CardMatchingGame *)game

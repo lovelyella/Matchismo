@@ -10,6 +10,7 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic, readwrite) NSInteger cardMatchNumber;
 @property (nonatomic, strong) NSMutableArray *cards; //of card
 @end
 
