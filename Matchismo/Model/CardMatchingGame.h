@@ -13,12 +13,13 @@
 
 
 //designated initializer
--(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
+
+-(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck withMatchingMode:(NSInteger)mode;
 
 -(void)chooseCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 
 @property (nonatomic, readonly) NSInteger score;
-@property (nonatomic, readonly) NSInteger cardMatchNumber;
+@property (nonatomic, readonly) NSInteger cardMatchMode;
 
 @end

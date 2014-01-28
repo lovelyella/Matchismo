@@ -10,7 +10,7 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, readwrite) NSInteger cardMatchNumber;
+@property (nonatomic, readwrite) NSInteger cardMatchMode;
 @property (nonatomic, strong) NSMutableArray *cards; //of card
 @end
 
@@ -30,6 +30,8 @@
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
+
+
 
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
@@ -69,28 +71,40 @@ static const int COST_TO_CHOOSE = 1;
     }
 }
 
--(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+-(instancetype)initWithCardCount:(NSUInteger)count
+                       usingDeck:(Deck *)deck
+                  withMatchingMode:(NSInteger)mode
 {
-    self = [super init]; //super's designated initializer
-    
-    if(self)
+    if(mode!=2 && mode!=3)
     {
-        for(int i =0; i< count; i++)
+        self = nil;
+        
+    }
+    else
+    {
+        self = [super init]; //super's designated initializer
+        
+        if(self)
         {
-            Card *card = [deck drawRandomCard];
-            if(card)
+            for(int i =0; i< count; i++)
             {
-                [self.cards addObject:card];
-            }
-            else
-            {
-                self = nil;
-                break;
+                Card *card = [deck drawRandomCard];
+                if(card)
+                {
+                    [self.cards addObject:card];
+                }
+                else
+                {
+                    self = nil;
+                    break;
+                }
             }
         }
+        self.cardMatchMode = mode;
     }
-    
     return self;
 }
+
+
 
 @end
