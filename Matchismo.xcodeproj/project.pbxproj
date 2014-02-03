@@ -172,15 +172,15 @@
 			isa = PBXGroup;
 			children = (
 				07B31D09184A374A00F50C08 /* Card.h */,
+				07B31D0A184A374A00F50C08 /* Card.m */,
 				06903D6618792F24003779DB /* CardMatchingGame.h */,
 				06903D6718792F24003779DB /* CardMatchingGame.m */,
 				07DC1A80186C763D0098CBFE /* PlayingCard.h */,
+				07DC1A81186C763D0098CBFE /* PlayingCard.m */,
 				07DC1A83186C7DA70098CBFE /* Deck.h */,
 				07DC1A84186C7DA70098CBFE /* Deck.m */,
 				07DC1A86186C80890098CBFE /* PlayingCardDeck.h */,
 				07DC1A87186C80890098CBFE /* PlayingCardDeck.m */,
-				07DC1A81186C763D0098CBFE /* PlayingCard.m */,
-				07B31D0A184A374A00F50C08 /* Card.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

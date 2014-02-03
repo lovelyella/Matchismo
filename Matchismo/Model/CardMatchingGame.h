@@ -21,5 +21,6 @@
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSInteger cardMatchMode;
+@property (nonatomic, strong) NSString *gameStatusString;
 
 @end

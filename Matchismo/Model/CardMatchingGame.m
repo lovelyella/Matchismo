@@ -16,6 +16,13 @@
 
 @implementation CardMatchingGame
 
+-(NSString *)gameStatusString
+{
+    if(!_gameStatusString) _gameStatusString = [NSString stringWithFormat:@""];
+    return _gameStatusString;
+    
+}
+
 -(NSMutableArray *)cards
 {
     if(!_cards) _cards = [[NSMutableArray alloc]init];
@@ -36,37 +43,66 @@ static const int COST_TO_CHOOSE = 1;
 -(void)chooseCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    
+    
     if(!card.isMatched)
     {
+        //선택된 카드인 경우 다시 뒤집는다.
         if(card.isChosen)
         {
             card.chosen = NO;
+            self.gameStatusString = [NSString stringWithFormat:@""];
             
         }
         else
         {
+            NSMutableArray *matchingCards = [[NSMutableArray alloc]init];
             //match against other chosen cards
             for(Card *otherCard in self.cards)
             {
                 if(otherCard.isChosen && !otherCard.isMatched)
                 {
-                    int matchScore = [card match:@[otherCard]];
-                    if(matchScore)
-                    {
-                        self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    }
-                    else
-                    {
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    break;
+                    [matchingCards addObject:otherCard];
+                    if([matchingCards count] >= self.cardMatchMode - 1) break;
                 }
             }
+            
+            if([matchingCards count]>= self.cardMatchMode - 1)
+            {
+                int matchScore = [card match:matchingCards];
+                NSMutableString *statusMutableString = [NSMutableString stringWithFormat:@"%@ ",card.contents];
+                
+                for(Card *otherCard in matchingCards)
+                {
+                    [statusMutableString appendString:[NSString stringWithFormat:@"%@ ",otherCard.contents]];
+                }
+                
+                
+                if(matchScore)
+                {
+                    self.score += matchScore * MATCH_BONUS;
+                    card.matched = YES;
+                    for(Card *otherCard in matchingCards) otherCard.matched = YES;
+                    
+                    [statusMutableString appendString:[NSString stringWithFormat:@" Match! for %d point",(matchScore*MATCH_BONUS)-COST_TO_CHOOSE]];
+                }
+                else
+                {
+                    self.score -= MISMATCH_PENALTY;
+                    for(Card *otherCard in matchingCards) otherCard.chosen = NO;
+                    
+                    [statusMutableString appendString:[NSString stringWithFormat:@" Mismatch! -%d point",MISMATCH_PENALTY-COST_TO_CHOOSE]];
+                }
+                self.gameStatusString = statusMutableString;
+            }
+            else
+            {
+                self.gameStatusString = [NSString stringWithFormat:@"%@",card.contents];
+            }
+            
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
+            
         }
     }
 }

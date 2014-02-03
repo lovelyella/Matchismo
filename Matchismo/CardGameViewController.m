@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
+@property (weak, nonatomic) IBOutlet UILabel *gameStatusLabel;
 
 
 @end
@@ -25,8 +26,10 @@
 
 - (IBAction)touchGameModeSegment:(UISegmentedControl *)sender {
     NSInteger selectedSegment = [self.gameModeSegmentControl selectedSegmentIndex];
-    NSLog(@"selected segment:%d",selectedSegment);
-    
+    self.game = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
+                                                 usingDeck:[self createDeck]
+                                          withMatchingMode:selectedSegment+2];
+    [self updateUI];
 }
 
 - (IBAction)touchNewGameButton:(UIButton *)sender
@@ -37,6 +40,7 @@
                                                  usingDeck:[self createDeck]
                                           withMatchingMode:selectedSegment+2];
     
+    self.gameModeSegmentControl.enabled = YES;
     [self updateUI];
 }
 
@@ -64,7 +68,7 @@
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
-    
+    self.gameModeSegmentControl.enabled = NO;
     [self updateUI];
 }
 
@@ -81,6 +85,7 @@
         cardButton.enabled = !card.isMatched;
         
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+        self.gameStatusLabel.text = [NSString stringWithFormat:@"%@",self.game.gameStatusString];
     }
 }
 
