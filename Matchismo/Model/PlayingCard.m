@@ -28,6 +28,7 @@
 -(int)match:(NSArray *)othercards
 {
     int score = 0;
+    
     if([othercards count] == 1)
     {
         PlayingCard *otherCard = [othercards firstObject];
@@ -39,6 +40,29 @@
         else if([otherCard.suit isEqualToString:self.suit])
         {
             score = 1;
+        }
+    }
+    
+    if([othercards count] == 2)
+    {
+        PlayingCard *firstOtherCard = [othercards firstObject];
+        PlayingCard *secondOtherCard = [othercards lastObject];
+        
+        score = 0;
+        if(firstOtherCard.rank == self.rank)
+        {
+            score+=3;
+        }
+        
+        if(secondOtherCard.rank == self.rank)
+        {
+            score+=3;
+        }
+        
+        if(score == 0)
+        {
+            if([firstOtherCard.suit isEqualToString:self.suit]) score+=1;
+            if([secondOtherCard.suit isEqualToString:self.suit]) score+=1;
         }
     }
     

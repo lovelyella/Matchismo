@@ -18,17 +18,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
 
+
 @end
 
 @implementation CardGameViewController
 
 - (IBAction)touchGameModeSegment:(UISegmentedControl *)sender {
+    NSInteger selectedSegment = [self.gameModeSegmentControl selectedSegmentIndex];
+    NSLog(@"selected segment:%d",selectedSegment);
+    
 }
 
 - (IBAction)touchNewGameButton:(UIButton *)sender
 {
+    NSInteger selectedSegment = [self.gameModeSegmentControl selectedSegmentIndex];
+    NSLog(@"selected segment:%d",selectedSegment);
     self.game = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
-                                                 usingDeck:[self createDeck]];
+                                                 usingDeck:[self createDeck]
+                                          withMatchingMode:selectedSegment+2];
     
     [self updateUI];
 }
@@ -38,8 +45,11 @@
 
 -(CardMatchingGame *)game
 {
+    
+    NSInteger selectedSegment = [self.gameModeSegmentControl selectedSegmentIndex];
     if(!_game) _game = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
-                                                        usingDeck:[self createDeck]];
+                                                        usingDeck:[self createDeck]
+                                                 withMatchingMode:selectedSegment+2];
     
     return _game;
 }
